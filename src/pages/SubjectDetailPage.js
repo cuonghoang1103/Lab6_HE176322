@@ -37,8 +37,14 @@ function SubjectDetailPage() {
     const newErrors = {};
     if (!form.code.trim()) newErrors.code = 'Code không được để trống';
     if (!form.name.trim()) newErrors.name = 'Name không được để trống';
-    if (Number(form.semester) <= 0) newErrors.semester = 'Semester phải lớn hơn 0';
-    if (Number(form.credits) <= 0) newErrors.credits = 'Credits phải lớn hơn 0';
+    const semester = Number(form.semester);
+    const credits = Number(form.credits);
+    if (!Number.isInteger(semester) || semester <= 0) {
+      newErrors.semester = 'Semester phải là số nguyên lớn hơn 0';
+    }
+    if (!Number.isInteger(credits) || credits <= 0) {
+      newErrors.credits = 'Credits phải là số nguyên lớn hơn 0';
+    }
     return newErrors;
   };
 
@@ -153,7 +159,6 @@ function SubjectDetailPage() {
                     <Form.Group className="mb-3" controlId="semester">
                       <Form.Label className="fw-bold">Semester</Form.Label>
                       <Form.Control
-                        type="number"
                         name="semester"
                         value={form.semester}
                         onChange={handleChange}
@@ -167,7 +172,6 @@ function SubjectDetailPage() {
                     <Form.Group className="mb-3" controlId="credits">
                       <Form.Label className="fw-bold">Credits</Form.Label>
                       <Form.Control
-                        type="number"
                         name="credits"
                         value={form.credits}
                         onChange={handleChange}
