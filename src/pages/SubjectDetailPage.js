@@ -11,6 +11,8 @@ const toForm = (subject) => ({
 function SubjectDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user'));
+  const isLecturer = user.role === 'Lecturer';
 
   const [form, setForm] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -49,6 +51,8 @@ function SubjectDetailPage() {
   };
 
   const handleEditSave = async () => {
+    if (!isLecturer) return;
+
     if (!isEditing) {
       setIsEditing(true);
       setMessage('');
@@ -81,6 +85,7 @@ function SubjectDetailPage() {
   };
 
   const handleDelete = async () => {
+    if (!isLecturer) return;
     if (!window.confirm(`Bạn có chắc muốn xóa môn ${form.code}?`)) return;
 
     try {
@@ -206,14 +211,20 @@ function SubjectDetailPage() {
                       />
                     </Form.Group>
 
-                    <div className="d-flex justify-content-between">
-                      <Button variant="dark" onClick={handleEditSave}>
-                        {isEditing ? 'Save' : 'Edit'}
-                      </Button>
-                      <Button variant="dark" onClick={handleDelete}>
-                        Delete
-                      </Button>
-                    </div>
+                    {isLecturer ? (
+                      <div className="d-flex justify-content-between">
+                        <Button variant="dark" onClick={handleEditSave}>
+                          {isEditing ? 'Save' : 'Edit'}
+                        </Button>
+                        <Button variant="dark" onClick={handleDelete}>
+                          Delete
+                        </Button>
+                      </div>
+                    ) : (
+                      <Alert variant="secondary" className="mb-0">
+                        Student chỉ được xem, không được sửa hoặc xóa môn học.
+                      </Alert>
+                    )}
                   </Form>
                 </Card.Body>
               </Card>
