@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import LoginPage from './pages/LoginPage';
 import SyllabusPage from './pages/SyllabusPage';
+import SubjectDetailPage from './pages/SubjectDetailPage';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         {/* các trang cần đăng nhập */}
         <Route element={<PrivateRoute />}>
           <Route path="/syllabus" element={<SyllabusPage />} />
+          <Route path="/subject/:id" element={<SubjectDetailPage />} />
         </Route>
 
         {/* "/" và mọi đường dẫn sai đều về /login */}
