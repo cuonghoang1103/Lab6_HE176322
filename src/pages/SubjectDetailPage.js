@@ -3,7 +3,6 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Navbar, Container, Row, Col, Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
 import api from '../services/api';
 
-// mảng tiên quyết -> chuỗi để hiện trong ô input
 const toForm = (subject) => ({
   ...subject,
   preRequisites: subject.preRequisites.join(', '),
@@ -20,7 +19,6 @@ function SubjectDetailPage() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
-  // id đổi thì tải lại môn học
   useEffect(() => {
     setLoading(true);
     api
@@ -45,7 +43,6 @@ function SubjectDetailPage() {
   };
 
   const handleEditSave = async () => {
-    // đang xem -> bật chế độ sửa
     if (!isEditing) {
       setIsEditing(true);
       setMessage('');
@@ -56,7 +53,6 @@ function SubjectDetailPage() {
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
 
-    // đổi lại đúng kiểu dữ liệu trước khi gửi lên API
     const updatedSubject = {
       ...form,
       semester: Number(form.semester),
@@ -89,7 +85,6 @@ function SubjectDetailPage() {
     }
   };
 
-  // ô đang khóa thì tô nền xám cho dễ nhận biết
   const readOnlyClass = isEditing ? '' : 'bg-body-secondary';
 
   return (

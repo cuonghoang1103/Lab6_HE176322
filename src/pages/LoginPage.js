@@ -30,7 +30,6 @@ function LoginPage() {
 
     setLoading(true);
     try {
-      // lấy bảng accounts rồi tìm tài khoản khớp email + password
       const res = await api.get('/accounts');
       const account = res.data.find(
         (acc) => acc.email === email.trim() && acc.password === password
@@ -43,7 +42,6 @@ function LoginPage() {
       } else if (!ROLES.includes(account.role)) {
         setMessage('Bạn không có quyền truy cập');
       } else {
-        // không lưu password vào localStorage
         const user = {
           id: account.id,
           email: account.email,

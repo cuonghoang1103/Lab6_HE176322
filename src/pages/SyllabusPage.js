@@ -9,13 +9,10 @@ function SyllabusPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // giá trị đang gõ trên form
   const [searchBy, setSearchBy] = useState('code');
   const [keyword, setKeyword] = useState('');
-  // điều kiện lọc thật sự, chỉ đổi khi bấm Search
   const [filter, setFilter] = useState({ by: 'code', keyword: '' });
 
-  // [] = chỉ gọi API 1 lần khi vào trang
   useEffect(() => {
     api
       .get('/subjects')
@@ -29,7 +26,6 @@ function SyllabusPage() {
     setFilter({ by: searchBy, keyword: keyword.trim() });
   };
 
-  // lọc theo code hoặc name, không phân biệt hoa thường
   const filteredSubjects = subjects.filter((subject) =>
     subject[filter.by].toLowerCase().includes(filter.keyword.toLowerCase())
   );
