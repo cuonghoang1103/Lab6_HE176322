@@ -207,10 +207,10 @@ function SubjectDetailPage() {
                     </Form.Group>
 
                     <div className="d-flex justify-content-between">
-                      <Button variant={isEditing ? 'success' : 'primary'} onClick={handleEditSave}>
+                      <Button variant="dark" onClick={handleEditSave}>
                         {isEditing ? 'Save' : 'Edit'}
                       </Button>
-                      <Button variant="danger" onClick={handleDelete}>
+                      <Button variant="dark" onClick={handleDelete}>
                         Delete
                       </Button>
                     </div>

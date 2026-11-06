@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { Alert, Button, Card, Container, Form, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { Container, Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
 import api from '../services/api';
 
 const ROLES = ['Student', 'Lecturer'];
@@ -93,7 +93,7 @@ function LoginPage() {
               <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
             </Form.Group>
 
-            <Button type="submit" variant="primary" className="w-100" disabled={loading}>
+            <Button type="submit" variant="dark" className="w-100" disabled={loading}>
               {loading ? <Spinner animation="border" size="sm" /> : 'Login'}
             </Button>
           </Form>

@@ -62,7 +62,7 @@ function SyllabusPage() {
               />
             </Col>
             <Col xs="auto">
-              <Button type="submit" variant="primary">
+              <Button type="submit" variant="dark">
                 Search
               </Button>
             </Col>
